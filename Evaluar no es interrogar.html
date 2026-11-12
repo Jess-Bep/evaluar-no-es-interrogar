@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Evaluar no es interrogar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Inter:wght@400;600&display=swap">
+<style>
+:root{--bg:#fff;--fg:#000;--mute:#666;--line:#000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--fg:#fff;--mute:#aaa;--line:#fff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000;--fg:#fff;--mute:#aaa;--line:#fff;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif}
+h1,h2,h3,.serif{font-family:"Playfair Display",Georgia,serif;margin:0}
+main{max-width:760px;margin:0 auto;padding:28px 22px 110px}
+.slide{display:none}.slide.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.slide.on{animation:none}.in{transition:none!important}}
+h1{font-size:clamp(3rem,13vw,6.2rem);line-height:.95;font-weight:900;letter-spacing:-.02em;margin:12vh 0 28px}
+h2{font-size:clamp(1.9rem,7vw,2.8rem);line-height:1.1;font-weight:700;margin-bottom:10px}
+.sub{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.4;max-width:30ch;border-left:2px solid var(--line);padding-left:16px}
+.lead{color:var(--mute);margin:0 0 22px}
+.box{border:1px solid var(--line);padding:18px;margin-top:28px}
+.box p{margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{perspective:800px;height:210px;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.card:focus-visible,button:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.in{position:relative;display:block;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.f{position:absolute;inset:0;border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;justify-content:space-between;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:var(--bg)}
+.back{transform:rotateY(180deg);background:var(--fg);color:var(--bg)}
+.f b{font-family:"Playfair Display",Georgia,serif;font-size:1.25rem}
+.f small{font-size:.8rem;line-height:1.35}
+.f i{font-family:"Playfair Display",Georgia,serif;font-size:1rem;line-height:1.35}
+.hint{color:var(--mute);font-size:.85rem;margin-top:12px}
+.dlg p{margin:6px 0}.dlg .j{padding-left:14px;border-left:2px solid var(--line)}
+.big{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;line-height:1.3;font-style:italic;margin:26px 0}
+.fix{display:grid;gap:10px;margin-top:8px}
+.fix div{border:1px solid var(--line);padding:12px 14px}
+.q{margin:22px 0 0}.q h3{font-size:1.25rem;font-weight:700;margin-bottom:10px}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);padding:12px 14px;margin-top:8px;cursor:pointer}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--fg);color:var(--bg);font-weight:600}
+.opt.no{text-decoration:line-through;color:var(--mute);border-style:dashed}
+.fb{margin:8px 0 0;font-size:.92rem;min-height:1.4em}
+.score{border:1px solid var(--line);padding:16px;margin-top:26px;display:none}
+.score.on{display:block}
+.btn{font:inherit;color:var(--bg);background:var(--fg);border:1px solid var(--fg);padding:10px 18px;cursor:pointer}
+.btn.ghost{color:var(--fg);background:var(--bg);border-color:var(--line)}
+ol.tips{padding:0;list-style:none;margin:16px 0 0;display:grid;gap:12px}
+ol.tips li{border-top:1px solid var(--line);padding-top:10px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:5}
+nav span{font-size:.85rem;color:var(--mute)}
+nav .btn:disabled{opacity:.3;cursor:default}
+.by{margin-top:32px;color:var(--mute);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+
+<section class="slide on" aria-label="Portada">
+  <h1>Evaluar no es interrogar</h1>
+  <p class="sub">Una pregunta mal hecha puede cerrar una conversación. Una bien hecha puede cambiar el futuro de alguien.</p>
+  <div class="box">
+    <h3>¿Qué es una evaluación de desempeño?</h3>
+    <p>Es una conversación donde se revisa cómo ha sido el trabajo de una persona y cómo puede mejorar. Las preguntas que se hacen ahí deciden si esa charla sirve o se queda corta.</p>
+  </div>
+  <p class="by">Por la autora y Madeley Garza</p>
+</section>
+
+<section class="slide" aria-label="Los 6 tipos de preguntas">
+  <h2>Seis formas de preguntar</h2>
+  <p class="lead">Cada una hace algo distinto.</p>
+  <div class="grid" id="cards"></div>
+  <p class="hint">Toca una tarjeta para ver el ejemplo.</p>
+</section>
+
+<section class="slide" aria-label="El error más común">
+  <h2>El jefe del “sí” y el “no”</h2>
+  <div class="dlg">
+    <p>Lunes, 10 a.m. Ana lleva un año en la empresa y hoy le toca su evaluación. Está nerviosa, pero preparó todo lo que quiere contar.</p>
+    <p>Su jefe abre la carpeta y empieza:</p>
+    <p class="j">—¿Cumpliste tus metas?<br>—Sí.</p>
+    <p class="j">—¿Llegaste puntual?<br>—Sí.</p>
+    <p class="j">—¿Estás conforme con tu trabajo?<br>—Sí.</p>
+    <p class="j">—Perfecto. Terminamos.</p>
+    <p>Ana sale en cinco minutos. Nunca pudo contar que ideó una forma de atender más rápido a los clientes. Tampoco que se siente atorada en su puesto y quiere aprender más.</p>
+    <p>Su jefe se quedó con tres “sí”. Ana se quedó con todo lo que no pudo decir.</p>
+  </div>
+  <p class="big">Las preguntas de sí o no dan respuestas rápidas, pero casi nunca dan respuestas reales.</p>
+  <h3>Cómo se arregla</h3>
+  <div class="fix">
+    <div>❌ “¿Estás conforme con tu trabajo?”</div>
+    <div>✅ “¿Qué parte de tu trabajo te gustaría cambiar o mejorar?”</div>
+  </div>
+</section>
+
+<section class="slide" aria-label="Quiz">
+  <h2>¿Qué tipo de pregunta es?</h2>
+  <p class="lead">Elige una opción en cada pregunta. Sin hacer trampa.</p>
+  <div id="quiz"></div>
+  <div class="score" id="score" aria-live="polite"></div>
+</section>
+
+<section class="slide" aria-label="Cierre">
+  <h2>Antes de preguntar, piensa qué quieres escuchar</h2>
+  <p class="big">Una entrevista no se trata de atrapar errores. Se trata de entender a una persona. Cuando preguntas con curiosidad de verdad, la gente responde con verdad. Y ahí es donde empieza a cambiar algo.</p>
+  <h3>Tres consejos para hacer buenas preguntas</h3>
+  <ol class="tips">
+    <li><b>Empieza con una pregunta abierta.</b><br>Deja que la persona hable antes de ponerle opciones.</li>
+    <li><b>Escucha la respuesta.</b><br>Lo mejor de una conversación suele estar en lo que dicen después de la primera respuesta.</li>
+    <li><b>Usa el seguimiento.</b><br>Un “¿por qué?” o “¿me cuentas más?” vale más que diez preguntas nuevas.</li>
+  </ol>
+  <p class="by">Por la autora y Madeley Garza</p>
+</section>
+
+</main>
+
+<nav>
+  <button class="btn ghost" id="prev">Anterior</button>
+  <span id="pos">1 de 6</span>
+  <button class="btn" id="next">Siguiente</button>
+</nav>
+
+<script>
+var TIPOS=[
+["Cerradas","Sirven para confirmar un dato rápido.","¿Terminaste el reporte de este mes?"],
+["Abiertas","Sirven para que la persona explique con sus propias palabras.","¿Qué fue lo que más disfrutaste de tu trabajo este trimestre?"],
+["De escala","Sirven para medir qué tanto, del 1 al 5 o del 1 al 10.","Del 1 al 10, ¿qué tan cómodo te sientes trabajando en equipo?"],
+["De opción múltiple","Sirven para elegir entre opciones ya preparadas.","¿Qué te ayudaría más a mejorar: más capacitación, más tiempo o más apoyo del equipo?"],
+["Situacionales","Sirven para ver cómo reaccionarías en una situación concreta.","Si un cliente se enoja contigo frente a todos, ¿qué harías?"],
+["De seguimiento","Sirven para profundizar en lo que la persona ya dijo.","Mencionaste que te costó el proyecto. ¿Qué fue lo más difícil?"]
+];
+var QUIZ=[
+{q:"Si dos compañeros discuten por una tarea y tú eres el líder, ¿qué harías?",o:["Cerrada","Situacional","De escala"],a:1,why:"Plantea una situación y pregunta cómo reaccionarías."},
+{q:"Del 1 al 5, ¿qué tanto sientes que tu jefe te escucha?",o:["De escala","Abierta","De seguimiento"],a:0,why:"Pide medir algo con un número."},
+{q:"Dijiste que te sentiste presionado. ¿Qué fue lo que más te presionó?",o:["Cerrada","De opción múltiple","De seguimiento"],a:2,why:"Retoma lo que la persona ya dijo para profundizar."}
+];
+var $=function(s){return document.querySelector(s)};
+
+var cards=$("#cards");
+TIPOS.forEach(function(t,k){
+  var b=document.createElement("button");
+  b.className="card";b.type="button";
+  b.setAttribute("aria-label",t[0]+". Toca para ver el ejemplo.");
+  b.innerHTML='<span class="in"><span class="f"><b>'+(k+1)+'. '+t[0]+'</b><small>'+t[1]+'</small></span><span class="f back"><small>Ejemplo</small><i>“'+t[2]+'”</i></span></span>';
+  b.onclick=function(){b.classList.toggle("flip")};
+  cards.appendChild(b);
+});
+
+var done=0,right=0;
+function buildQuiz(){
+  done=0;right=0;
+  var box=$("#quiz");box.innerHTML="";$("#score").className="score";
+  QUIZ.forEach(function(it,n){
+    var d=document.createElement("div");d.className="q";
+    var h=document.createElement("h3");h.textContent=(n+1)+". “"+it.q+"”";d.appendChild(h);
+    var fb=document.createElement("p");fb.className="fb";
+    var btns=[];
+    it.o.forEach(function(txt,j){
+      var o=document.createElement("button");o.type="button";o.className="opt";
+      o.textContent=String.fromCharCode(65+j)+") "+txt;
+      o.onclick=function(){
+        btns.forEach(function(x,m){x.disabled=true;if(m===it.a)x.classList.add("ok")});
+        if(j===it.a){right++;fb.textContent="¡Correcto! "+it.why}
+        else{o.classList.add("no");fb.textContent="Casi. La respuesta es "+String.fromCharCode(65+it.a)+") "+it.o[it.a]+". "+it.why}
+        done++;if(done===QUIZ.length)finish();
+      };
+      btns.push(o);d.appendChild(o);
+    });
+    d.appendChild(fb);box.appendChild(d);
+  });
+}
+function finish(){
+  var s=$("#score");
+  var msg=right===3?"Perfecto. Ya piensas como editora de preguntas.":right===2?"Muy bien. Solo se te escapó una.":"Buen intento. Repasa las tarjetas y vuelve a probar.";
+  s.innerHTML='<h3 class="serif">Acertaste '+right+' de '+QUIZ.length+'</h3><p>'+msg+'</p><button class="btn" type="button" id="again">Intentar de nuevo</button>';
+  s.className="score on";
+  $("#again").onclick=buildQuiz;
+  s.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+buildQuiz();
+
+var slides=document.querySelectorAll(".slide"),i=0;
+function go(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach(function(s,k){s.classList.toggle("on",k===i)});
+  $("#pos").textContent=(i+1)+" de "+slides.length;
+  $("#prev").disabled=i===0;$("#next").disabled=i===slides.length-1;
+  window.scrollTo(0,0);
+}
+$("#prev").onclick=function(){go(i-1)};
+$("#next").onclick=function(){go(i+1)};
+document.addEventListener("keydown",function(e){
+  if(e.key==="ArrowRight")go(i+1);
+  if(e.key==="ArrowLeft")go(i-1);
+});
+go(0);
+</script>
+</body>
+</html>
